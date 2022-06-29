@@ -30,12 +30,12 @@ pipeline {
 								mkdir my-express-application && cd my-express-application
 								npm init -f
 								npm install --save express serverless-http
-					                        cd services
+					                        cd fasting
 								
-					                        for services in `ls`
+					                        for fasting in `ls`
 					                     do
-					                           if [ -d "$services" ]; then
-    					                       echo "The servicename is: $services"
+					                           if [ -d "$fasting" ]; then
+    					                       echo "The servicename is: $fasting"
     						                     cd $services
     						                     
 								     npm install joi
