@@ -1,7 +1,7 @@
 pipeline {
     agent any
      parameters {
-     choice choices: ['fasting', 'QA', 'Production'], description: "Choose which environment to push changes to.", name: "ENVIRONMENT"
+     choice choices: ['fasting', 'weight'], description: "Choose which environment to push changes to.", name: "ENVIRONMENT"
      }
     environment {
       ENVIRONMENT = "us-east-1"
