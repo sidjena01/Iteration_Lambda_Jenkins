@@ -57,14 +57,36 @@ pipeline {
                 
                                
                 stage("Deploy Weight") {
-                    when { expression { params.ENVIRONMENT == "QA" } }
+                    when { expression { params.ENVIRONMENT == "weight" } }
                     steps {
-                    script {
-                    //   if (env.ENVIRONMENT == "QA") {                                          
-                           sh "serverless deploy --region ${env.ENVIRONMENT}"
-                             //     } 
-                           }
-                        
+                        script {
+                          echo 'Deploying for Fasting'
+				                       sh '''
+                                                              
+								mkdir my-express-application && cd my-express-application
+								npm init -f
+								npm install --save express serverless-http
+					                        cd fasting
+								
+					                        for fasting in `ls`
+					                     do
+					                           if [ -d "$fasting" ]; then
+    					                       echo "The servicename is: $weight"
+    						                     cd $services
+    						                     
+								     npm install joi
+								     npm audit fix --force
+    						                     serverless deploy --region ${env.ENVIRONMENT}
+    					                       cd ..
+    					                      fi
+					                          done
+				                           '''
+                       
+                    //   if (env.ENVIRONMENT == "UAT") {                                          
+                         //  sh "serverless deploy --region ${env.ENVIRONMENT}"
+                              //    } 
+                               }
+                  
                          // sh "serverless deploy --region ${env.ENVIRONMENT}"
                     }
                 }
